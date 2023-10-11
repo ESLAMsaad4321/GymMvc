@@ -1,0 +1,45 @@
+﻿@model GymMvc.Model_View.LoginView
+@{
+    ViewData["Title"] = "Home Page";
+}
+<a class="btn btn-secondary btn-lg" asp-action="CreateUser">
+    <i class="bi bi-plus-circle-dotted"></i>
+
+Create Account
+</a>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Index">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="User_Name" class="control-label"></label>
+                        <input asp-for="User_Name" class="form-control" />
+                        <span asp-validation-for="User_Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserId" class="form-label mt-4"></label>
+                        <select class="form-select" asp-for="UserId" asp-items="Model.Users"
+                                data-placeholder="Select a User" data-minimum-results-for-search="Infinity">
+                            <option value=""></option>
+                        </select>
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn btn-primary mt-4" />
+                    </div>
+                </form>
+            </div>
+        </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+        <script src="~/js/gameform.js" asp-append-version="true"></script>
+    }
+}
+

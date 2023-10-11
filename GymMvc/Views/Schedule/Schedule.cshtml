@@ -1,0 +1,51 @@
+﻿@using GymMvc.Setting;
+@model IEnumerable<ScheduleWorkOut>
+<a href="##" onClick="history.go(-1); return false;"> Return to Your Page</a>
+
+@if (!Model.Any())
+{
+    <div class="alert  alert-warning">
+        <h4 class="alert-heading">No Schedule!</h4>
+        <p class="mb-0">No Schedule Were Added Yet.</p>
+    </div>
+}
+else
+{
+
+@for(var i=1;i<Model.Count();i++)
+{
+    <h2 class="text-secondary fw-bolder">Day @i</h2>
+        <div class=" mt-5">
+                    <table class="table table-bordered border-primary">
+                        <tbody>
+        @foreach (var item in Model)
+        {
+            if (i == item.Day)
+            {
+                
+                           
+                                <tr class="border-1 border-success">
+                                    <td>
+                                        <div class="d-flex">
+                                            <div class="pe-4">
+                                            <img src="@($"{FileSetting.imagepath}/gym/{item.WorkOut.Image}")" alt="@item.WorkOut.Name" style="max-width:600px">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                            <h4 class="text-bg-light">@item.WorkOut.Name</h4>
+                                            <p class="fs-5">Sets=>@item.WorkOut.sets</p>
+                                            <p class="fs-5">Reps=>@item.WorkOut.reps</p>
+                                            <p class="fs-5">Description=>@item.WorkOut.Description</p>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            
+        
+}
+}

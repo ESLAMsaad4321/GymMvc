@@ -1,0 +1,58 @@
+﻿@using GymMvc.Setting;
+@model IEnumerable<Notification>
+
+@if (Model==null)
+{
+    <div class="alert  alert-warning">
+        <h4 class="alert-heading">No Trainer!</h4>
+        <p class="mb-0">No Treainer Were Added Yet.</p>
+    </div>
+}
+else
+{
+    <a href="##" onClick="history.go(-1); return false;"> Return to Your Page</a>
+    <div class=" mt-5">
+        <table class="table table-bordered border-primary">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="border-1 border-success">
+                        <td>
+                            <div class="d-flex">
+                                <div class="pe-4">
+                                    <img src="@($"{FileSetting.imagepath}/{item.Trainer.Image}")" alt="@item.Trainer.Name" style="max-width:150px">
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h4 class="text-bg-light">@item.Trainer.Name</h4>
+                                    <span class="badge bg-info fs-5 mb-4">Trainer</span>
+                                    <p class="fs-5">Phone Number=>@item.Trainer.Phone_Number</p>
+                                    <p class="fs-5">Age=>@item.Trainer.Age</p>
+                                    <p class="fs-5">Height=>@item.Trainer.Height</p>
+                                    <p class="fs-5">Weight=>@item.Trainer.Weight</p>
+                                    <p class="fs-5">Small Description=>@item.Trainer.Description</p>
+                                    <div class="align-end">
+                                        <div class="d-flex justify-content-end">
+                                            <a href="javascript:;" class="btn btn-success me-2 rounded rounded-3 js-ApproveRequest" data-id="@item.Trainer.Id">
+                                                <i class="bi bi-person-add"></i>
+                                            </a>
+                                            <a href="javascript:;" class="btn btn-danger rounded rounded-3 js-RejectRequest" data-id="@item.Trainer.Id">
+                                                <i class="bi bi-x-circle-fill"></i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+@section Scripts
+    {
+    <script src="~/js/RejectRequest.js"></script>
+    <script src="~/js/ApproveRequest.js"></script>
+}
+

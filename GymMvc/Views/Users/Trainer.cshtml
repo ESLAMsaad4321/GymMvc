@@ -1,0 +1,65 @@
+﻿@using GymMvc.Setting;
+@model Information
+<div class="d-flex justify-content-bottom">
+    <a class="btn btn-primary col-md-2 rounded rounded-3  me-5  d-flex flex-column justify-content-end" asp-controller="Schedule" asp-action="Schedule" asp-route-id="@Model.Id">
+    <i class="bi bi-table"></i>
+    Schedule
+</a>
+    <a class="btn btn-info col-md-2 rounded rounded-3 d-flex flex-column justify-content-end" asp-controller="Weight" asp-action="UpdateWeight" asp-route-id="@Model.Id">
+        <i class="bi bi-building-fill-add"></i>
+        Update
+</a>
+</div>
+<div class="card border-success rounded-4 mt-5 overflow-hidden">
+    <div class="card-body p-0">
+        <div class="row">
+            <div class="col-md-8 px-5 py-4 d-flex flex-column justify-content-between">
+                <div>
+                    <h1 class="text-success fw-bolder">@Model.Name</h1>
+                    <span class="badge bg-info fs-5 mb-4">Trainer</span>
+                    <p class="fs-5">Phone Number=>@Model.Phone_Number</p>
+                    <p class="fs-5">Age=>@Model.Age</p>
+                    <p class="fs-5">Height=>@Model.Height</p>
+                    <p class="fs-5">Weight=>@Model.Weight</p>
+                    <p class="fs-5">Small Description=>@Model.Description</p>
+                    <div class="align-bottom">
+                        <div class="d-flex justify-content-bottom">
+                            <a class="btn btn-info rounded rounded-3 me-2" asp-controller="Information" asp-action="Edit" asp-route-id="@Model.Id">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-danger rounded rounded-3 js-delete" data-id="@Model.Id" >
+                                <i class="bi bi-trash3"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="@($"{FileSetting.imagepath}/{Model.Image}")" alt="@Model.Name" class="w-100 h-100">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row mt-5">
+
+    <div class="col-lg-4 col-md-6">
+        <a class="card border-success mb-3 text-decoration-none" asp-action="AllCoachewithReq" asp-route-id="@Model.Id">
+            <div class="card-body" style="background-image:url(@($"{FileSetting.imagepath}/download.jpeg")); background-size:cover; background-position:center; height:500px">
+                <div class="d-flex align-items-end h-100">
+                </div>
+            </div>
+            <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+                <h5>Coache</h5>
+            </div>
+        </a>
+    </div>
+</div>
+@section Scripts
+{
+<script src="~/js/delete.js"></script>
+}

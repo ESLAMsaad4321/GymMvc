@@ -1,0 +1,37 @@
+﻿@using GymMvc.Setting;
+@model IEnumerable<UpdateWeight>
+@if (!Model.Any())
+{
+    <div class="alert  alert-warning">
+        <h4 class="alert-heading">No Update!</h4>
+        <p class="mb-0">No Weights Were Update Yet.</p>
+    </div>
+}
+else
+{
+    <a href="##" onClick="history.go(-1); return false;"> Return to Trainer Page</a>
+    <div>
+        <table class="table table-bordered border-primary">
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+
+                        <tr class="border-1 border-success">
+                          <td>
+                            <div class="d-flex flex-column justify-content-center">
+                                <h2 class="text-secondary fw-bolder">@item.dateTime</h2>
+                                <p class="fs-5">Old Weight=>@item.OldWeight</p>
+                                <p class="fs-5">New Weight=>@item.NewWeight</p>
+                                    
+                            </div>
+                          </td>
+                        </tr>
+                    
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+}
